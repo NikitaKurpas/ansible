@@ -19,6 +19,12 @@
   shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   tags:
   - essentials
+- name: Install Powerlevel10k
+  ansible.builtin.git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    dest: ~/.oh-my-zsh/custom/themes/powerlevel10k
+  tags:
+  - essentials
 - name: Install zsh plugin for autocompletions
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
