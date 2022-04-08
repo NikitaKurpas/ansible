@@ -1,0 +1,22 @@
+- name: Installing GNU/stow
+  homebrew:
+    name: stow
+    state: present
+  tags:
+  - dotfiles
+  - essentials
+- name: Cloning .dotfiles
+  ansible.builtin.git:
+    repo: 'git@github.com:NikitaKurpas/dotfiles.git'
+    dest: ~/.dotfiles
+    recursive: yes
+    update: yes
+    version: main
+  tags:
+  - dotfiles
+  - essentials
+- name: Stow dotfiles
+  shell: cd $HOME/.dotfiles && ./install
+  tags:
+  - dotfiles
+  - essentials
