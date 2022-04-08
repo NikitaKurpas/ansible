@@ -6,7 +6,7 @@
   - essentials
 - name: Cloning .dotfiles
   ansible.builtin.git:
-    repo: 'git@github.com:NikitaKurpas/dotfiles.git'
+    repo: git@github.com:NikitaKurpas/dotfiles.git
     dest: ~/.dotfiles
     recursive: yes
     update: yes
