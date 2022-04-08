@@ -19,3 +19,21 @@
   shell: . ~/.nvm/nvm.sh && nvm install --lts
   tags:
   - essentials
+- name: Install yarn
+  homebrew:
+    name: yarn
+    state: present
+  tags:
+  - essentials
+- name: Install fkill with npm
+  npm:
+    name: fkill-cli
+    global: yes
+  tags:
+  - extras
+- name: Install zx with npm
+  npm:
+    name: zx
+    global: yes
+  tags:
+  - extras
