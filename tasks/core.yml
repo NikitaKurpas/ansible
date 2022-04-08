@@ -48,7 +48,7 @@
     state: present
   tags:
   - essentials
-- name: Install essential packages from brew cask
+- name: Install extra packages from brew cask
   homebrew_cask:
     name:
     - firefox

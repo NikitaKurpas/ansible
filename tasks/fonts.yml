@@ -1,0 +1,17 @@
+- name: Tap brew font repos
+  homebrew_tap:
+    name: homebrew/cask-fonts
+    state: present
+  tags:
+  - extras
+- name: Install fancy fonts with brew
+  homebrew_cask:
+    name:
+    - font-fira-code
+    - font-fira-code-nerd-font
+    - font-jetbrains-mono
+    - font-jetbrains-mono-nerd-font
+    #- font-meslo-lg-nerd-font
+    state: present
+  tags:
+  - extras
