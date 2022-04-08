@@ -6,11 +6,10 @@
     homebrew:
       update_homebrew: yes
     tags:
-    - zsh
-    - terminal
     - essentials
-    - dotfiles
+    - extras
   tasks:
   - import_tasks: tasks/zsh.yml
   - import_tasks: tasks/dotfiles.yml
   - import_tasks: tasks/personal-projects.yml
+  - import_tasks: tasks/core.yml
