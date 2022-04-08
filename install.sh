@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/NikitaKurpas/ansible/HEAD/install.sh)"
+
+section () {
+    echo
+    echo
+    echo "######################################"
+    echo "$1"
+    echo "######################################"
+}
+
+run () {
+    $@
+    if [ "$?" -ne 0 ]; then
+        echo
+        echo
+        echo "Stopping. Something went wrong, check console output"
+        exit 1
+    fi
+}
+
+echo "Hello $(whoami)! Let's get you set up."
+
+section "Installing XCode CLI tools"
+if ! $(xcode-select -p 1>/dev/null 2>/dev/null); then
+    run sudo -v -p "Enter user password: "
+    run sudo xcode-select --install
+else
+    echo "XCode CLI tools already installed, skipping"
+fi
+
+section "Installing homebrew"
+if ! $(brew --version 1>/dev/null 2>/dev/null); then
+    run /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    echo "Homebrew already installed, skipping"
+fi
+
+section "Installing Ansible"
+if ! $(ansible --version 1>/dev/null 2>/dev/null); then
+    run brew install ansible
+else
+    echo "Ansible already installed, skipping"
+fi
+
+section "Executing Ansible playbook"
+run ansible-pull -U git@github.com:NikitaKurpas/ansible.git --ask-vault-pass --ask-become-pass
+
