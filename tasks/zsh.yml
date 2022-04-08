@@ -3,35 +3,25 @@
     name: zsh
     state: present
   tags:
-  - zsh
-  - terminal
   - essentials
 - name: Change shell to zsh
   shell: chsh -s `which zsh`
   tags:
-  - zsh
-  - terminal
   - essentials
 - name: Check if oh my zsh exists
   stat:
     path: ~/.oh-my-zsh
   register: oh_my_zsh
   tags:
-  - zsh
-  - terminal
   - essentials
 - name: Install ohmyzsh
   when: oh_my_zsh.stat.exists == False
   shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   tags:
-  - zsh
-  - terminal
   - essentials
 - name: Install zsh plugin for autocompletions
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
   tags:
-  - zsh
-  - terminal
   - essentials

@@ -3,7 +3,6 @@
     name: stow
     state: present
   tags:
-  - dotfiles
   - essentials
 - name: Cloning .dotfiles
   ansible.builtin.git:
@@ -13,10 +12,8 @@
     update: yes
     version: main
   tags:
-  - dotfiles
   - essentials
 - name: Stow dotfiles
   shell: cd $HOME/.dotfiles && ./install
   tags:
-  - dotfiles
   - essentials
