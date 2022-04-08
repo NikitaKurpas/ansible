@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/NikitaKurpas/ansible/HEAD/install.sh)"
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/NikitaKurpas/ansible/HEAD/install)"
 
 section () {
     echo
@@ -45,5 +45,5 @@ else
 fi
 
 section "Executing Ansible playbook"
-run ansible-pull -U git@github.com:NikitaKurpas/ansible.git --ask-vault-pass --ask-become-pass
+run ansible-pull -U git@github.com:NikitaKurpas/ansible.git --ask-vault-pass
 

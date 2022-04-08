@@ -1,5 +1,11 @@
 - hosts: localhost
-  become: true
+  pre_tasks:
+  - name: Update homebrew
+    homebrew:
+      update_homebrew: yes
+    tags:
+    - zsh
+    - terminal
+    - essentials
   tasks:
-  - name: Test
-    shell: echo Success!
+  - import_tasks: tasks/zsh.yml
