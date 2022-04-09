@@ -1,45 +1,23 @@
-- name: Tap extra brew repos
-  homebrew_tap:
-    name: beeftornado/rmtree
-    state: present
-  tags:
-  - extras
 - name: Install essential packages from brew
   homebrew:
     name:
     - ansible
+    - tmux
+    - fzf
     - curl
+    - httpie
     - coreutils
-    - bash # upgrade bash
     - ripgrep
+    - fd
     - rsync
-    - git # upgrade git
-    - git-lfs
-    - ruby # upgrade ruby
-    - python # python 3
-    - go
+    - git
     - openssh
     - ssh-copy-id
-    - htop
-    - gnupg
-    - tmux
-    - httpie
-    - fzf
-    - fd
-    #- rlwrap # required by cht.sh --shell
-    - tldr
+    - python
+    - go
     state: present
   tags:
   - essentials
-- name: Install extra packages from brew
-  homebrew:
-    name:
-    - gh
-    - brew-rmtree
-    - mas
-    state: present
-  tags:
-  - extras
 - name: Install essential packages from brew cask
   homebrew_cask:
     name:
@@ -48,29 +26,3 @@
     state: present
   tags:
   - essentials
-- name: Install extra packages from brew cask
-  homebrew_cask:
-    name:
-    - firefox
-    - slack
-    - setapp
-    - 1password-cli
-    - jetbrains-toolbox
-    - visual-studio-code
-    - sloth
-    - figma
-    - toggl-track
-    - qlstephen
-    - quicklook-json
-    #- postico # GUI client for PostgreSQL databases
-    #- postman
-    #- sourcetree
-    state: present
-  tags:
-  - extras
-- name: Install extra packages with gem
-  community.general.gem:
-    name: colorls
-    state: present
-  tags:
-  - extras
