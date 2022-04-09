@@ -1,6 +1,8 @@
-- name: Install node
+- name: Install node and yarn
   homebrew:
-    name: node
+    name: 
+    - node
+    - yarn
     state: present
   tags:
   - essentials
@@ -11,7 +13,7 @@
     update: yes
   tags:
   - essentials
-- name: Checkout latest nvm
+- name: Checkout nvm
   shell: cd ~/.nvm && git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
   tags:
   - essentials
@@ -19,21 +21,12 @@
   shell: . ~/.nvm/nvm.sh && nvm install --lts
   tags:
   - essentials
-- name: Install yarn
-  homebrew:
-    name: yarn
-    state: present
-  tags:
-  - essentials
-- name: Install fkill with npm
+- name: Install stuff with npm
   npm:
-    name: fkill-cli
+    name: "{{ item }}"
     global: yes
-  tags:
-  - extras
-- name: Install zx with npm
-  npm:
-    name: zx
-    global: yes
+  loop:
+  - fkill-cli
+  - zx
   tags:
   - extras
