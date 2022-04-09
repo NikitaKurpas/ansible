@@ -6,17 +6,17 @@
     state: present
   tags:
   - essentials
-- name: Clone nvm
-  ansible.builtin.git:
-    repo: git@github.com:nvm-sh/nvm.git
-    dest: ~/.nvm
-    update: yes
+- name: Install nvm
+  block:
+  - name: Clone nvm
+    ansible.builtin.git:
+      repo: git@github.com:nvm-sh/nvm.git
+      dest: ~/.nvm
+      update: yes    
+  - name: Checkout latest nvm
+    shell: cd ~/.nvm && git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
   tags:
-  - essentials
-- name: Checkout nvm
-  shell: cd ~/.nvm && git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
-  tags:
-  - essentials
+    - essentials
 - name: Install LTS node
   shell: . ~/.nvm/nvm.sh && nvm install --lts
   tags:

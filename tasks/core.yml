@@ -20,9 +20,11 @@
   - essentials
 - name: Install essential packages from brew cask
   homebrew_cask:
-    name:
-    - google-chrome
-    - docker
+    name: "{{ item }}"
     state: present
+  loop:
+  - google-chrome
+  - docker
+  ignore_errors: yes
   tags:
   - essentials
