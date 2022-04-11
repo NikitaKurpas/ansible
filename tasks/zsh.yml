@@ -31,9 +31,3 @@
     dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
   tags:
   - essentials
-- name: Install zsh plugin for autocompletions
-  ansible.builtin.git:
-    repo: https://github.com/marlonrichert/zsh-autocomplete.git
-    dest: ~/.oh-my-zsh/custom/plugins/zsh-autocomplete
-  tags:
-  - essentials
