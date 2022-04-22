@@ -10,6 +10,7 @@
     - ripgrep
     - fd
     - rsync
+    - direnv
     - git
     - openssh
     - ssh-copy-id
