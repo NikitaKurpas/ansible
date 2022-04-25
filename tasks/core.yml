@@ -19,6 +19,7 @@
     state: present
   tags:
   - essentials
+  - essentials-cli
 - name: Install essential packages from brew cask
   homebrew_cask:
     name: "{{ item }}"
@@ -26,6 +27,8 @@
   loop:
   - google-chrome
   - docker
+  - alacritty
   ignore_errors: yes
   tags:
   - essentials
+  - essentials-gui
