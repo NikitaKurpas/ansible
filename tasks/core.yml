@@ -32,3 +32,25 @@
   tags:
   - essentials
   - essentials-gui
+  tags:
+  - essentials
+  - essentials-cli
+- name: Update terminfos
+  block:
+    - name: Create a term dir for terminfo files
+      ansible.builtin.tempfile:
+        state: directory
+        suffix: build
+      register: terminfo_tmp
+    - name: Update tmux terminfo
+      shell: curl -L https://gist.githubusercontent.com/nicm/ea9cf3c93f22e0246ec858122d9abea1/raw/37ae29fc86e88b48dbc8a674478ad3e7a009f357/tmux-256color > {{ terminfo_tmp.path }}/tmux-256color.info && tic -x {{ terminfo_tmp.path }}/tmux-256color.info
+    - name: Update other terminfos
+      shell: /usr/local/opt/ncurses/bin/infocmp {{ item }} > {{ terminfo_tmp.path }}/{{ item }}.info && tic -xe {{ item }} {{ terminfo_tmp.path}}/{{ item }}.info
+      loop:
+      - alacritty
+      - alacritty-direct
+  ignore_errors: yes
+  tags:
+  - essentials
+  - essentials-cli
+  - temp
