@@ -4,11 +4,14 @@
     - ansible
     - tmux
     - fzf
+    - less
     - curl
     - httpie
     - coreutils
     - ripgrep
     - fd
+    - bat
+    - git-delta
     - rsync
     - direnv
     - git
@@ -43,7 +46,7 @@
         suffix: build
       register: terminfo_tmp
     - name: Update tmux terminfo
-      shell: curl -L https://gist.githubusercontent.com/nicm/ea9cf3c93f22e0246ec858122d9abea1/raw/37ae29fc86e88b48dbc8a674478ad3e7a009f357/tmux-256color > {{ terminfo_tmp.path }}/tmux-256color.info && tic -x {{ terminfo_tmp.path }}/tmux-256color.info
+      shell: curl -L https://gist.githubusercontent.com/nicm/ea9cf3c93f22e0246ec858122d9abea1/raw/37ae29fc86e88b48dbc8a674478ad3e7a009f357/tmux-256color > {{ terminfo_tmp.path }}/tmux-256color.info && tic -x {{ terminfo_tmp.path }}/tmux-256color.info # https://gist.github.com/nicm/ea9cf3c93f22e0246ec858122d9abea1
     - name: Update other terminfos
       shell: /usr/local/opt/ncurses/bin/infocmp {{ item }} > {{ terminfo_tmp.path }}/{{ item }}.info && tic -xe {{ item }} {{ terminfo_tmp.path}}/{{ item }}.info
       loop:
