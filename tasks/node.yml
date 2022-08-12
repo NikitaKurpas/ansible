@@ -5,7 +5,8 @@
     - yarn
     state: present
   tags:
-  - essentials
+  - extras
+  - workflow-node
 - name: Install nvm
   block:
   - name: Clone nvm
@@ -16,11 +17,13 @@
   - name: Checkout latest nvm
     shell: cd ~/.nvm && git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
   tags:
-    - essentials
+    - extras
+    - workflow-node
 - name: Install LTS node
   shell: . ~/.nvm/nvm.sh && nvm install --lts
   tags:
-  - essentials
+  - extras
+  - workflow-node
 - name: Install stuff with npm
   npm:
     name: "{{ item }}"

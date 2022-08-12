@@ -3,6 +3,7 @@
     name: stow
     state: present
   tags:
+  - workflow-console
   - essentials
 - name: Cloning .dotfiles
   ansible.builtin.git:
@@ -12,8 +13,10 @@
     update: yes
     version: main
   tags:
+  - workflow-console
   - essentials
 - name: Stow dotfiles
   shell: cd $HOME/.dotfiles && ./install
   tags:
+  - workflow-console
   - essentials

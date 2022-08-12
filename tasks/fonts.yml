@@ -4,6 +4,7 @@
     state: present
   tags:
   - extras
+  - fonts
 - name: Install fancy fonts with brew
   homebrew_cask:
     name:
@@ -15,3 +16,4 @@
     state: present
   tags:
   - extras
+  - fonts

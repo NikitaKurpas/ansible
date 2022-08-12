@@ -1,43 +1,36 @@
-- name: Install essential packages from brew
+- name: Install packages for console workflow from brew
   homebrew:
     name:
+    - git
     - ansible
     - tmux
     - fzf
-    - less
-    - curl
-    - httpie
     - coreutils
+    - less
     - ripgrep
     - fd
     - bat
+    - curl
+    - httpie
     - git-delta
     - rsync
     - direnv
-    - git
     - openssh
     - ssh-copy-id
-    - python
-    - go
     state: present
   tags:
+  - workflow-console
   - essentials
-  - essentials-cli
-- name: Install essential packages from brew cask
+- name: Install packages for console workflow from brew cask
   homebrew_cask:
     name: "{{ item }}"
     state: present
   loop:
-  - google-chrome
-  - docker
   - alacritty
-  ignore_errors: yes
+  ignore_errors: true
   tags:
+  - workflow-console
   - essentials
-  - essentials-gui
-  tags:
-  - essentials
-  - essentials-cli
 - name: Update terminfos
   block:
     - name: Create a term dir for terminfo files
@@ -52,8 +45,28 @@
       loop:
       - alacritty
       - alacritty-direct
-  ignore_errors: yes
+  ignore_errors: true
+  tags:
+  - workflow-console
+  - essentials
+
+- name: Install other essential packages from brew
+  homebrew:
+    name:
+    - python
+    - go
+    state: present
   tags:
   - essentials
-  - essentials-cli
-  - temp
+
+- name: Install other essentials packages from brew cask
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  loop:
+  - google-chrome
+  - docker
+  ignore_errors: true
+  tags:
+  - essentials
+  - essentials-gui
