@@ -1,5 +1,5 @@
 - name: Installing GNU/stow
-  homebrew:
+  ansible.builtin.package:
     name: stow
     state: present
   tags:

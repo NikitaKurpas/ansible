@@ -1,5 +1,5 @@
-- name: Install packages for console workflow from brew
-  homebrew:
+- name: Install packages for console workflow
+  ansible.builtin.package:
     name:
     - git
     - ansible
@@ -22,6 +22,7 @@
   - workflow-console
   - essentials
 - name: Install packages for console workflow from brew cask
+  when: ansible_distribution == 'MacOSX'
   homebrew_cask:
     name: "{{ item }}"
     state: present
@@ -32,6 +33,7 @@
   - workflow-console
   - essentials
 - name: Update terminfos
+  when: ansible_distribution == 'MacOSX'
   block:
     - name: Create a term dir for terminfo files
       ansible.builtin.tempfile:
@@ -51,7 +53,7 @@
   - essentials
 
 - name: Install other essential packages from brew
-  homebrew:
+  ansible.builtin.package:
     name:
     - python
     - go
