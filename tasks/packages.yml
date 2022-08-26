@@ -1,5 +1,6 @@
 - name: Install packages for console workflow
   become: true
+  become_method: sudo
   ansible.builtin.package:
     name:
     - git
