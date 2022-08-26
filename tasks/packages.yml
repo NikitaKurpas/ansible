@@ -1,4 +1,5 @@
 - name: Install packages for console workflow
+  become: true
   ansible.builtin.package:
     name:
     - git
@@ -52,7 +53,8 @@
   - workflow-console
   - essentials
 
-- name: Install other essential packages from brew
+- name: Install other essential packages from 
+  become: true
   ansible.builtin.package:
     name:
     - python

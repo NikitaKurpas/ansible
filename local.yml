@@ -3,6 +3,7 @@
     personal: "{{ lookup('env', 'HOME') }}/personal"
   pre_tasks:
   - name: Update homebrew
+    when: ansible_distribution == 'MacOSX'
     homebrew:
       update_homebrew: yes
     tags:
